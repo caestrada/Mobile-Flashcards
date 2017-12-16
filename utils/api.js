@@ -29,3 +29,16 @@ export const createNewDeck = (title) => {
   return AsyncStorage.setItem(id, JSON.stringify({ title: title, questions: [] }))
             .then(() => AsyncStorage.getItem(id));
 }
+
+/* Take in two arguments, 'id' and 'card', and will add the card to the 
+ * list of questions for the deck with the associated title. */
+export const addCardToDeck = (id, card) => {
+  return AsyncStorage.getItem(id)
+          .then(deck => {
+            let newDeck = JSON.parse(deck)
+            newDeck.questions.push(card)
+
+            return AsyncStorage.mergeItem(id, JSON.stringify(newDeck))
+                    .then(() => AsyncStorage.getItem(id))
+          })
+}

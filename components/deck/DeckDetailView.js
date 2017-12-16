@@ -30,9 +30,9 @@ export default class DeckDetailView extends Component {
   }
 
   addNewCard = (deck) => {
-    // this.props.navigation.navigate('NewCard', {
-    //   deckId: deck.id
-    // })
+    this.props.navigation.navigate('NewCard', {
+      deckId: deck.id
+    })
   }
 
   render () {
