@@ -6,6 +6,7 @@ import HomeView from './components/home/HomeView';
 import NewDeckView from './components/deck/NewDeckView';
 import DeckDetailView from './components/deck/DeckDetailView';
 import AddCardView from './components/deck/AddCardView';
+import QuizView from './components/quiz/QuizView';
 
 
 const Tabs = TabNavigator({
@@ -27,6 +28,7 @@ const MainNavigator = StackNavigator({
   Home: { screen: Tabs },
   DeckDetail: { screen: DeckDetailView },
   NewCard: { screen: AddCardView },
+  Quiz: { screen: QuizView },
 })
 
 export default class App extends React.Component {

@@ -22,8 +22,8 @@ export default class DeckDetailView extends Component {
   }
 
   startQuiz = (deck) => {
-    // const {questions} = this.props.navigation.state.params.deck
-    // this.props.navigation.navigate('Quiz', {questions, deck})
+    const {questions} = this.props.navigation.state.params.deck;
+    this.props.navigation.navigate('Quiz', {questions, deck});
 
     // clearLocalNotification()
     //   .then(setLocalNotification())
