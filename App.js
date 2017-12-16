@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
+import { setLocalNotification, clearLocalNotification } from "./utils/helpers";
 
 import HomeView from './components/home/HomeView';
 import NewDeckView from './components/deck/NewDeckView';
@@ -32,6 +33,11 @@ const MainNavigator = StackNavigator({
 })
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification() 
+    // clearLocalNotification()
+  }
+
   render() {
     return (
       <View style={[styles.container, {marginTop: 10}]}>
