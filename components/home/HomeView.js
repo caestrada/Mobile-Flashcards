@@ -1,25 +1,47 @@
-import React, { PropTypes } from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { getDecks } from '../../utils/api';
 
-HomeView.propTypes = {
+import Deck from './Deck';
 
-}
+export default class HomeView extends Component {
+  state = {
+    decks: [],
+  }
 
-export default function HomeView (props) {
-  return (
-    <View style={styles.container}>
-      <Text>
-        HomeView
-      </Text>
-    </View>
-  )
+  componentWillMount() {
+    console.log('componentWillMount...');
+    getDecks()
+    .then(decks => {
+      this.setState({ decks })
+    });
+  }
+
+  viewDeckDetail = (deck) => {
+    this.props.navigation.navigate(
+      'DeckDetail',
+      {deck}
+    )
+  }
+
+  render () {
+    const {decks} = this.state;
+    console.log('decks', decks);
+
+    return (
+      <ScrollView style={styles.container}>
+        {decks.map((deck) => <Deck
+                                key={deck.id} 
+                                data={deck}
+                                viewDetail={this.viewDeckDetail}
+                              />)}
+      </ScrollView>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
-})
+});

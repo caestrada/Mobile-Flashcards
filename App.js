@@ -4,6 +4,7 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 
 import HomeView from './components/home/HomeView';
 import NewDeckView from './components/deck/NewDeckView';
+import DeckDetailView from './components/deck/DeckDetailView';
 
 
 const Tabs = TabNavigator({
@@ -23,6 +24,7 @@ const Tabs = TabNavigator({
 
 const MainNavigator = StackNavigator({
   Home: { screen: Tabs },
+  DeckDetail: { screen: DeckDetailView },
 })
 
 export default class App extends React.Component {
