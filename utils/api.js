@@ -2,6 +2,7 @@ import { AsyncStorage } from 'react-native';
 
 /* return all of the decks along with their titles, questions, and answers. */
 export const getDecks = () => {
+  console.log('api getDecks');
   // AsyncStorage.clear()
   // AsyncStorage.getAllKeys()
   // .then(res => {
@@ -11,14 +12,28 @@ export const getDecks = () => {
   // })
 
   return AsyncStorage.getAllKeys()
-          .then((keys) => AsyncStorage.multiGet(keys))
+          .then((keys) => {
+            console.log('api getAllKeys', keys);
+            return AsyncStorage.multiGet(keys);
+          })
           .then(db => {
-            return  db.map((result, i) => {
-                      const key = result[0]
-                      const val = JSON.parse(result[1])
+            console.log('api db', db);
+            let decks = db
+                        .filter((result => {
+                          const key = result[0];
+                          return key !== 'MobileFlash:notifications';
+                        }))
+                        .map((result, i) => {
+                          const key = result[0];
+                          if(key === 'MobileFlash:notifications')
+                            return;
 
-                      return { id: key, ...val }
-                    })
+                          const val = JSON.parse(result[1])
+
+                          return { id: key, ...val }
+                        });
+            console.log('api decks', decks);
+            return decks;
           })
           .catch(err => {
             console.log('ERROR', err);

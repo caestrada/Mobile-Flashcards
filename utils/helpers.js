@@ -4,7 +4,6 @@ import { Notifications, Permissions } from "expo";
 const NOTIFICATION_KEY = 'MobileFlash:notifications';
 
 export const clearLocalNotification = () => {
-  console.log('clearLocalNotification!')
   return AsyncStorage.removeItem(NOTIFICATION_KEY)
           .then(Notifications.cancelAllScheduledNotificationsAsync);
 }
@@ -24,13 +23,9 @@ export const setLocalNotification = () => {
   .then(JSON.parse)
   .then((data) => {
     if(data === null) {
-      console.log(data)
-      console.log('null!!!')
       Permissions.askAsync(Permissions.NOTIFICATIONS)
       .then(({ status }) => {
-        console.log(status)
         if(status === 'granted') {
-          console.log('granted!')
           Notifications.cancelAllScheduledNotificationsAsync();
 
           let tomorrow = new Date();

@@ -13,6 +13,7 @@ export default class HomeView extends Component {
     console.log('componentWillMount...');
     getDecks()
     .then(decks => {
+      console.log('componentWillMount decks', decks);
       this.setState({ decks })
     });
   }
@@ -26,7 +27,7 @@ export default class HomeView extends Component {
 
   render () {
     const {decks} = this.state;
-    console.log('decks', decks);
+    console.log('render decks', decks);
 
     return (
       <ScrollView style={styles.container}>
