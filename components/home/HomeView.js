@@ -31,7 +31,7 @@ export default class HomeView extends Component {
 
     return (
       <ScrollView style={styles.container}>
-        {decks.map((deck) => <Deck
+        {decks && decks.map((deck) => <Deck
                                 key={deck.id} 
                                 data={deck}
                                 viewDetail={this.viewDeckDetail}
