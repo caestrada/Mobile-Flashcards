@@ -20,6 +20,9 @@ export const getDecks = () => {
                       return { id: key, ...val }
                     })
           })
+          .catch(err => {
+            console.log('ERROR', err);
+          });
 }
 
 /* take in a single 'title' argument and add it to the decks. */
@@ -27,7 +30,10 @@ export const createNewDeck = (title) => {
   const id = '_' + Math.random().toString(36).substr(2, 9)
 
   return AsyncStorage.setItem(id, JSON.stringify({ title: title, questions: [] }))
-            .then(() => AsyncStorage.getItem(id));
+            .then(() => AsyncStorage.getItem(id))
+            .catch(err => {
+              console.log('ERROR', err);
+            });
 }
 
 /* Take in two arguments, 'id' and 'card', and will add the card to the 
@@ -41,4 +47,7 @@ export const addCardToDeck = (id, card) => {
             return AsyncStorage.mergeItem(id, JSON.stringify(newDeck))
                     .then(() => AsyncStorage.getItem(id))
           })
+          .catch(err => {
+            console.log('ERROR', err);
+          });
 }
