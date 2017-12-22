@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Animated, Button } from 'react-native';
+import { clearLocalNotification, setLocalNotification } from '../../utils/helpers';
 
 function Btn({ btnTitle, onPress }) {
   return(
@@ -32,8 +33,7 @@ export default class DeckDetailView extends Component {
     const {questions} = this.props.navigation.state.params.deck;
     this.props.navigation.navigate('Quiz', {questions, deck});
 
-    // clearLocalNotification()
-    //   .then(setLocalNotification())
+    clearLocalNotification().then(setLocalNotification())
   }
 
   addNewCard = (deck) => {
