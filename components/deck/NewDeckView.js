@@ -22,9 +22,12 @@ export default class NewDeckView extends Component {
     if(input === '') 
       return;
     
-    createNewDeck(input).then(result => {
-      const { goBack, navigate, dispatch } = this.props.navigation;
-      navigate('Home');
+    createNewDeck(input).then(deck => {
+      const {navigate} = this.props.navigation;
+      navigate(
+        'DeckDetail',
+        {deck}
+      )
     })
   }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View} from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { setLocalNotification, clearLocalNotification } from "./utils/helpers";
 
@@ -20,16 +20,17 @@ const Tabs = TabNavigator({
   'NEW DECK': { 
     screen: NewDeckView, 
     navigationOptions: {
+      // header: null,
       headerTitle: 'New Deck',
     }
   }
 });
 
 const MainNavigator = StackNavigator({
-  Home: { screen: Tabs },
+  Home:       { screen: Tabs },
   DeckDetail: { screen: DeckDetailView },
-  NewCard: { screen: AddCardView },
-  Quiz: { screen: QuizView },
+  NewCard:    { screen: AddCardView },
+  Quiz:       { screen: QuizView },
 })
 
 export default class App extends React.Component {

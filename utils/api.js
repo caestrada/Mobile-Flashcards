@@ -2,22 +2,13 @@ import { AsyncStorage } from 'react-native';
 
 /* return all of the decks along with their titles, questions, and answers. */
 export const getDecks = () => {
-  console.log('api getDecks');
-  // AsyncStorage.clear()
-  // AsyncStorage.getAllKeys()
-  // .then(res => {
-  //   if(res.length === 0) {
-  //     saveDeckTitle('Default Deck')
-  //   }
-  // })
+  // AsyncStorage.clear();
 
   return AsyncStorage.getAllKeys()
           .then((keys) => {
-            console.log('api getAllKeys', keys);
             return AsyncStorage.multiGet(keys);
           })
           .then(db => {
-            console.log('api db', db);
             let decks = db
                         .filter((result => {
                           const key = result[0];
@@ -32,7 +23,6 @@ export const getDecks = () => {
 
                           return { id: key, ...val }
                         });
-            console.log('api decks', decks);
             return decks;
           })
           .catch(err => {
@@ -46,6 +36,7 @@ export const createNewDeck = (title) => {
 
   return AsyncStorage.setItem(id, JSON.stringify({ title: title, questions: [] }))
             .then(() => AsyncStorage.getItem(id))
+            .then((deck) => Promise.resolve({id: id, ...JSON.parse(deck)}))
             .catch(err => {
               console.log('ERROR', err);
             });

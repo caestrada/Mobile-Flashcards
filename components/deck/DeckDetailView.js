@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, Animated } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Animated, Button } from 'react-native';
 
 function Btn({ btnTitle, onPress }) {
   return(
@@ -14,6 +14,13 @@ function Btn({ btnTitle, onPress }) {
 export default class DeckDetailView extends Component {
   state = {
     height: new Animated.Value(0),
+  };
+
+  static navigationOptions = (props) => {
+    const {navigate} = props.navigation;
+    return {
+      headerLeft: <Button title="Home" onPress={() => navigate('Home')}/>,
+    }
   };
 
   componentWillMount() {
