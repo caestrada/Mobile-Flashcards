@@ -41,7 +41,7 @@ export default class HomeView extends Component {
 
     return (
       <View style={styles.container}>
-      {decks.length === 0
+      {decks && decks.length === 0
         ? <View style={styles.welcome}>
             <Text style={{textAlign: 'center'}}>No decks!{'\n'}Go ahead and create a new one.</Text>
             <Btn btnTitle="New Deck" style={styles.btn} onPress={this.newDeck}/>
